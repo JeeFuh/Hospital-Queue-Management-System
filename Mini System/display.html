@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queue Display</title><link rel="stylesheet" href="Style.css"></head>
+<body class="display">
+<div class="ticker">ℹ Welcome to our Hospital • Please have your queue number ready • Thank you for your patience</div>
+<main class="dwrap">
+  <h1>City General Hospital</h1><p>Patient Queue Management System</p>
+  <section class="now"><h2>NOW SERVING</h2><div id="now" class="big mono">- - -</div><p id="where"></p></section>
+  <section class="mini">
+    <div><h5 class="g">NEXT IN LINE</h5><b id="next" class="mono">- - -</b></div>
+    <div><h5>WAITING</h5><b id="wait">0</b></div>
+    <div><h5>AVERAGE WAIT</h5><b id="avg">0 min</b></div>
+  </section>
+  <h3>RECENTLY CALLED</h3><div id="recent" class="recent">No recent calls</div>
+  <div class="wq"><small>Waiting Queue</small><div id="wlist">Queue is empty</div></div>
+  <footer><span id="date"></span><span id="time" class="mono gold"></span><span>❤ Thank you for waiting</span></footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="Config.js"></script><script src="Display.js"></script>
+</body></html>
