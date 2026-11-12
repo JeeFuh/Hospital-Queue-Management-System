@@ -3,7 +3,7 @@
 <title>Hospital Queue – Admin</title><link rel="stylesheet" href="style.css"></head>
 <body>
 <header class="top"><h1>🏥 Hospital Queue Management</h1>
-  <div><span id="clock"></span><br><small>Welcome, Admin · <a href="display.html">Open display screen</a></small></div></header>
+  <div><span id="clock"></span><br><small>Welcome, Admin · <a href="display.html">Open display screen</a><a href="#" id="logout">Log out</a></small></div></header>
 <main>
   <section class="stats">
     <div class="card"><b id="s-wait">0</b><span>Waiting</span></div>
@@ -31,5 +31,5 @@
   </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="config.js"></script><script src="app.js"></script>
+<script src="config.js"></script><script src="auth.js"></script><script src="app.js"></script>
 </body></html>

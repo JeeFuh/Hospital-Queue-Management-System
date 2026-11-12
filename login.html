@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Login</title><link rel="stylesheet" href="style.css">
+<style>
+.lw{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#667eea,#764ba2)}
+.lb{background:#fff;padding:32px;border-radius:12px;width:340px;box-shadow:0 8px 30px #0003}
+.lb h2{text-align:center}.err{color:#b91c1c;font-size:13px;margin-top:10px;text-align:center}
+</style></head>
+<body><div class="lw"><form class="lb" id="f">
+  <h2>🏥 Admin Login</h2>
+  <label>Email</label><input id="email" type="email" required>
+  <label>Password</label><input id="pw" type="password" required>
+  <button class="btn blue wide" id="go">Log in</button>
+  <div class="err" id="err"></div>
+  <p style="text-align:center;font-size:12px"><a href="display.html" style="color:#2563eb">View display screen</a></p>
+</form></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script>
+db.auth.getSession().then(({data}) => { if (data.session) location.replace('index.html'); });
+document.getElementById('f').onsubmit = async e => {
+  e.preventDefault();
+  const go = document.getElementById('go'); go.disabled = true; go.textContent = 'Logging in...';
+  const { error } = await db.auth.signInWithPassword({
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('pw').value });
+  if (error) {
+    document.getElementById('err').textContent = 'Invalid email or password.';
+    go.disabled = false; go.textContent = 'Log in';
+  } else location.replace('index.html');
+};
+</script></body></html>
