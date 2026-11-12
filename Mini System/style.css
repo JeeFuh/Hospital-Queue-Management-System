@@ -354,3 +354,21 @@ footer {
   color: #fcd34d;
   font-size: 18px;
 }
+
+.ticker {
+  position:relative
+}
+
+.back {
+  position:absolute;
+  left:12px;
+  top:5px;
+  color:#fff;
+  opacity:.6;
+  font-size:12px;
+  text-decoration:none
+}
+
+.back:hover {
+  opacity:1
+}
