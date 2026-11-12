@@ -372,3 +372,18 @@ footer {
 .back:hover {
   opacity:1
 }
+
+.top small a {
+  margin:0 4px;
+  text-decoration:none;
+  font-weight:600
+}
+
+.top small a:hover {
+  text-decoration:underline
+}
+
+.sep {
+  opacity:.6;
+  margin:0 2px
+}
