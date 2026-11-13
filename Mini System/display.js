@@ -31,7 +31,11 @@ async function update() {
   $('wait').textContent = waiting.length;
   const mins = called.map(r => (new Date(r.called_at) - new Date(r.created_at)) / 60000);
   $('avg').textContent = (mins.length ? Math.round(mins.reduce((a, b) => a + b) / mins.length) : 0) + ' min';
-  $('recent').innerHTML = called.slice(0, 6).map(r => `<span class="chip">${esc(r.queue_no)}</span>`).join('') || 'No recent calls';
+    // Recently called: only patients still being served
+  // (completed or cancelled numbers disappear)
+  const stillServing = called.filter(r => r.status === 'serving');
+  $('recent').innerHTML = stillServing.slice(0, 6)
+    .map(r => `<span class="chip">${esc(r.queue_no)}</span>`).join('') || 'No recent calls';
   $('wlist').textContent = waiting.length ? waiting.slice(0, 8).map(r => r.queue_no).join('  ·  ') : 'Queue is empty';
 
   const key = now ? now.id + '|' + evTime(now) : null;   // changes on a new call OR a voice re-call
