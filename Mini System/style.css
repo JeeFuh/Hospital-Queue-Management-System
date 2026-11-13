@@ -1,70 +1,66 @@
+/* ==========================================================================
+   BASE / RESET
+   ========================================================================== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Segoe UI, system-ui, sans-serif;
-  background: #f8fafc;
-  color: #1e293b;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #eef4f3;
+  color: #12302d;
 }
 
 .mono {
-  font-family: Courier New, monospace;
+  font-family: Consolas, 'Courier New', monospace;
 }
 
-a {
-  color: #fff;
-}
 
+/* ==========================================================================
+   HEADER / TOP BAR
+   ========================================================================== */
 .top {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(120deg, #0f766e, #0e7490);
   color: #fff;
   padding: 16px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 4px solid #5eead4;
 }
 
 .top h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .top div {
   text-align: right;
 }
 
+.top small a {
+  background: #fff2;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-left: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top small a:hover {
+  background: #fff4;
+}
+
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
 main {
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 16px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px #0002;
-}
-
-.stats .card {
-  padding: 16px;
-}
-
-.stats b {
-  display: block;
-  font-size: 24px;
-}
-
-.stats span {
-  color: #64748b;
 }
 
 .grid {
@@ -83,17 +79,66 @@ main {
   padding: 20px;
 }
 
-h2 {
-  margin: 0 0 12px;
-  font-size: 20px;
-}
-
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: #0f766e;
+}
+
+
+/* ==========================================================================
+   CARDS & STATS
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #d7e6e3;
+  box-shadow: 0 2px 8px #0f766e1f;
+}
+
+.stats .card {
+  padding: 16px;
+  border-left: 5px solid #0f766e;
+}
+
+.stats .card:nth-child(2) {
+  border-color: #0ea5e9;
+}
+
+.stats .card:nth-child(3) {
+  border-color: #22c55e;
+}
+
+.stats .card:nth-child(4) {
+  border-color: #f59e0b;
+}
+
+.stats b {
+  display: block;
+  font-size: 26px;
+}
+
+.stats span {
+  color: #64748b;
+}
+
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
 label {
   display: block;
   font-size: 13px;
@@ -106,32 +151,51 @@ label {
   align-items: center;
 }
 
-input:not([type=checkbox]), select {
+input:not([type=checkbox]),
+select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border: 1px solid #bcd3cf;
+  border-radius: 10px;
 }
 
+input:focus,
+select:focus {
+  outline: 2px solid #5eead4;
+}
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
 .btn {
   border: 0;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 6px 12px;
   color: #fff;
   cursor: pointer;
   font-size: 13px;
 }
 
+/* Button colors */
 .blue {
-  background: #2563eb;
+  background: #0f766e;
 }
 
 .green {
-  background: #059669;
+  background: #0284c7;
 }
 
 .red {
-  background: #ef4444;
+  background: #e11d48;
+}
+
+.amber {
+  background: #d97706;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
 }
 
 .wide {
@@ -141,21 +205,29 @@ input:not([type=checkbox]), select {
   font-size: 15px;
 }
 
+
+/* ==========================================================================
+   RESULT BOX
+   ========================================================================== */
 .result {
   margin-top: 16px;
   padding: 16px;
   text-align: center;
-  background: #ecfdf5;
-  border: 1px solid #6ee7b7;
-  border-radius: 8px;
+  background: #f0fdfa;
+  border: 1px solid #5eead4;
+  border-radius: 10px;
 }
 
 .result h3 {
   font-size: 32px;
   margin: 6px 0 0;
-  color: #047857;
+  color: #0f766e;
 }
 
+
+/* ==========================================================================
+   ROOMS
+   ========================================================================== */
 .rooms {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -164,17 +236,17 @@ input:not([type=checkbox]), select {
 }
 
 .room {
-  background: #ecfdf5;
-  border: 1px solid #6ee7b7;
-  border-radius: 8px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 10px;
   padding: 10px;
   font-size: 13px;
   position: relative;
 }
 
 .room.busy {
-  background: #eff6ff;
-  border-color: #93c5fd;
+  background: #fffbeb;
+  border-color: #fcd34d;
 }
 
 .room p {
@@ -187,17 +259,29 @@ input:not([type=checkbox]), select {
   top: 8px;
 }
 
+
+/* ==========================================================================
+   TAGS
+   ========================================================================== */
 .tag {
-  background: #ede9fe;
-  color: #6d28d9;
+  background: #ccfbf1;
+  color: #0f766e;
   border-radius: 6px;
   padding: 2px 8px;
   font-size: 11px;
 }
 
 .tag.pr {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+
+/* ==========================================================================
+   TABLE
+   ========================================================================== */
+.scroll {
+  overflow-x: auto;
 }
 
 table {
@@ -207,14 +291,15 @@ table {
 }
 
 th {
-  background: #f1f5f9;
+  background: #e6f2f0;
   text-align: left;
   padding: 10px;
 }
 
 td {
   padding: 10px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2eceb;
+  white-space: nowrap;
 }
 
 .empty {
@@ -222,6 +307,10 @@ td {
   color: #94a3b8;
 }
 
+
+/* ==========================================================================
+   STATUS BADGES
+   ========================================================================== */
 .st {
   padding: 3px 10px;
   border-radius: 10px;
@@ -235,29 +324,56 @@ td {
 }
 
 .serving {
-  background: #dbeafe;
-  color: #1e40af;
+  background: #cffafe;
+  color: #155e75;
 }
 
 .completed {
-  background: #d1fae5;
-  color: #065f46;
+  background: #dcfce7;
+  color: #166534;
 }
 
 .cancelled {
-  background: #fee2e2;
-  color: #991b1b;
+  background: #ffe4e6;
+  color: #9f1239;
 }
 
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 80px);
+  background: #0f766e;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: .3s;
+  z-index: 9;
+}
+
+.toast.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   DISPLAY SCREEN
+   ========================================================================== */
 .display {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(160deg, #0b3b4a, #0f766e 60%, #134e4a);
   min-height: 100vh;
   color: #fff;
   text-align: center;
 }
 
 .ticker {
-  background: #0003;
+  background: #0005;
   padding: 6px;
   font-size: 12px;
 }
@@ -272,27 +388,43 @@ td {
   margin: 20px 0 0;
 }
 
+/* "Now serving" panel */
 .now {
-  background: #fff3;
-  border: 1px solid #fff6;
-  border-radius: 16px;
-  padding: 20px;
+  background: #fff;
+  color: #0f766e;
+  border-radius: 20px;
+  padding: 22px;
   margin: 20px 0;
-  box-shadow: 0 0 25px #fff3;
+  box-shadow: 0 10px 30px #0005;
 }
 
 .now h2 {
-  color: #fcd34d;
-  font-size: 26px;
+  color: #0e7490;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
 .big {
-  font-size: 80px;
+  font-size: 84px;
   font-weight: 700;
-  color: #fcd34d;
   margin: 10px 0;
 }
 
+.now p {
+  color: #475569;
+}
+
+.flash {
+  animation: flash 1.2s ease 3;
+}
+
+@keyframes flash {
+  50% {
+    box-shadow: 0 0 0 12px #5eead4aa;
+  }
+}
+
+/* Mini stat boxes */
 .mini {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -300,9 +432,10 @@ td {
 }
 
 .mini div {
-  background: #fff2;
-  border-radius: 10px;
+  background: #ffffff1f;
+  border-radius: 12px;
   padding: 14px;
+  border-top: 4px solid #5eead4;
 }
 
 .mini h5 {
@@ -310,13 +443,14 @@ td {
 }
 
 .g {
-  color: #6ee7b7;
+  color: #5eead4;
 }
 
 .mini b {
   font-size: 28px;
 }
 
+/* Recent chips */
 .recent {
   display: flex;
   gap: 10px;
@@ -325,24 +459,26 @@ td {
 }
 
 .chip {
-  background: #fff3;
+  background: #ffffff2a;
   padding: 8px 14px;
   border-radius: 8px;
-  font-family: Courier New, monospace;
+  font-family: Consolas, monospace;
 }
 
+/* Waiting queue */
 .wq {
-  background: #0004;
-  border-radius: 8px;
+  background: #0005;
+  border-radius: 10px;
   padding: 10px;
   margin: 24px 0;
   text-align: left;
 }
 
 .wq small {
-  color: #fbbf24;
+  color: #5eead4;
 }
 
+/* Footer */
 footer {
   display: flex;
   justify-content: space-between;
@@ -351,39 +487,28 @@ footer {
 }
 
 .gold {
-  color: #fcd34d;
+  color: #fde68a;
   font-size: 18px;
 }
 
-.ticker {
-  position:relative
+
+/* ==========================================================================
+   VOICE BUTTON
+   ========================================================================== */
+.voice {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: #fff;
+  color: #0f766e;
+  border: 0;
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px #0005;
 }
 
-.back {
-  position:absolute;
-  left:12px;
-  top:5px;
-  color:#fff;
-  opacity:.6;
-  font-size:12px;
-  text-decoration:none
-}
-
-.back:hover {
-  opacity:1
-}
-
-.top small a {
-  margin:0 4px;
-  text-decoration:none;
-  font-weight:600
-}
-
-.top small a:hover {
-  text-decoration:underline
-}
-
-.sep {
-  opacity:.6;
-  margin:0 2px
+.voice.on {
+  background: #5eead4;
 }

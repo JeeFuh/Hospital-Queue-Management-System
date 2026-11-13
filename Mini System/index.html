@@ -1,40 +1,103 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hospital Queue – Admin</title><link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Queue – Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-<header class="top"><h1>🏥 Hospital Queue Management</h1>
-  <div><span id="clock"></span><br><small>Welcome, Admin 
-    <span class="sep">·</span>
-    <a href="display.html" target="_blank" rel="noopener">Open display screen</a>
-    <span class="sep">·</span>
-    <a href="#" id="logout">Log out</a>
-  </small></div></header>
-<main>
-  <section class="stats">
-    <div class="card"><b id="s-wait">0</b><span>Waiting</span></div>
-    <div class="card"><b id="s-serve">0</b><span>Serving</span></div>
-    <div class="card"><b id="s-done">0</b><span>Completed</span></div>
-    <div class="card"><b id="s-total">0</b><span>Today's Total</span></div>
-  </section>
-  <div class="grid">
-    <section class="card pad">
-      <h2>➕ Add New Patient</h2>
-      <form id="form">
-        <label>Patient Name</label><input id="name" required placeholder="Enter patient name">
-        <label>Department</label><select id="dept" required></select>
-        <label class="check"><input type="checkbox" id="prio"> Priority (senior / PWD / pregnant)</label>
-        <button class="btn blue wide">Generate Queue Number</button>
-      </form>
-      <div id="result" class="result" hidden>✅ Queue Number Generated<h3 id="result-no" class="mono"></h3></div>
+
+  <!-- ===== Header ===== -->
+  <header class="top">
+    <h1>🏥 Hospital Queue Management System</h1>
+    <div>
+      <span id="clock"></span><br>
+      <small>
+        Welcome, Admin
+        <a href="display.html" target="_blank" rel="noopener">Open display screen</a>
+        <a href="#" id="logout">Log out</a>
+      </small>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== Stat cards ===== -->
+    <section class="stats">
+      <div class="card"><b id="s-wait">0</b><span>Waiting</span></div>
+      <div class="card"><b id="s-serve">0</b><span>Serving</span></div>
+      <div class="card"><b id="s-done">0</b><span>Completed</span></div>
+      <div class="card"><b id="s-total">0</b><span>Today's Total</span></div>
     </section>
-    <section class="card pad">
-      <div class="row"><h2>📋 Queue Management</h2><button id="refresh" class="btn blue">Refresh</button></div>
-      <h4>Room Status</h4><div id="rooms" class="rooms"></div>
-      <table><thead><tr><th>Queue No.</th><th>Patient</th><th>Department</th><th>Status</th><th>Time</th><th>Actions</th></tr></thead>
-        <tbody id="tbody"></tbody></table>
-    </section>
-  </div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="config.js"></script><script src="auth.js"></script><script src="app.js"></script>
-</body></html>
+
+    <div class="grid">
+
+      <!-- ===== Add new patient ===== -->
+      <section class="card pad">
+        <h2>➕ Add New Patient</h2>
+
+        <form id="form">
+          <label>Patient Name</label>
+          <input id="name" required placeholder="Enter patient name">
+
+          <label>Department</label>
+          <select id="dept" required></select>
+
+          <label class="check">
+            <input type="checkbox" id="prio"> Priority (senior / PWD / pregnant)
+          </label>
+
+          <button class="btn blue wide">Generate Queue Number</button>
+        </form>
+
+        <div id="result" class="result" hidden>
+          ✅ Queue Number Generated
+          <h3 id="result-no" class="mono"></h3>
+        </div>
+      </section>
+
+      <!-- ===== Queue management ===== -->
+      <section class="card pad">
+        <div class="row">
+          <h2>📋 Queue Management</h2>
+          <button id="refresh" class="btn blue">Refresh</button>
+        </div>
+
+        <h4>Room Status</h4>
+        <div id="rooms" class="rooms"></div>
+
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Queue No.</th>
+                <th>Patient</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Notification popup (used by the Call Voice button) -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== Scripts (order matters) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>

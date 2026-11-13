@@ -4,6 +4,7 @@ $('dept').innerHTML = '<option value="">Select department</option>' +
   Object.keys(DEPTS).map(d => `<option>${d}</option>`).join('');
 
 async function refresh() { rows = await loadToday(); render(); }
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 
 function render() {
   const n = s => rows.filter(r => r.status === s).length;
@@ -26,7 +27,8 @@ function render() {
     <td><span class="st ${r.status}">${r.status}</span>${r.counter ? ' · ' + r.counter : ''}</td>
     <td>${new Date(r.created_at).toLocaleTimeString()}</td>
     <td>${r.status === 'waiting' ? `<button class="btn green" onclick="callNext(${r.id})">Call</button>` : ''}
-        ${r.status === 'serving' ? `<button class="btn blue" onclick="setStatus(${r.id},'completed')">Complete</button>` : ''}
+        ${r.status === 'serving' ? `<button class="btn amber" onclick="recallVoice(${r.id})">🔔 Call Voice</button>
+        <button class="btn blue" onclick="setStatus(${r.id},'completed')">Complete</button>` : ''}
         ${['waiting', 'serving'].includes(r.status) ? `<button class="btn red" onclick="setStatus(${r.id},'cancelled')">Cancel</button>` : ''}</td></tr>`).join('')
     || '<tr><td colspan="6" class="empty">No patients today</td></tr>';
 }
@@ -49,14 +51,16 @@ async function callNext(id) {
   await db.from('queue_entries').update({ status: 'serving', counter: room, called_at: new Date().toISOString() }).eq('id', id);
   refresh();
 }
+async function recallVoice(id) {   // display screen watches recall_at and speaks again
+  const { error } = await db.from('queue_entries').update({ recall_at: new Date().toISOString() }).eq('id', id);
+  toast(error ? 'Failed: ' + error.message : '🔔 Voice call sent to the display screen');
+}
 async function setStatus(id, status) {
   await db.from('queue_entries').update({ status, completed_at: new Date().toISOString() }).eq('id', id);
   refresh();
 }
 $('refresh').onclick = async () => {
-  const b = $('refresh');
-  b.disabled = true;
-  b.textContent = 'Refreshing...';
+  const b = $('refresh'); b.disabled = true; b.textContent = 'Refreshing...';
   await refresh();
   b.textContent = '✔ Refreshed';
   setTimeout(() => { b.textContent = 'Refresh'; b.disabled = false; }, 800);
